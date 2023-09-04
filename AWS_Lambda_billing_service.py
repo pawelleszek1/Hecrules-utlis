@@ -9,14 +9,14 @@ from requests.exceptions import HTTPError
 #logger.setLevel(logging.INFO)
 
 #Constants
-MAGIC_NUMBER = 0.85 #15% discount for RPO
-# SOC ratecard for services provided to DLA Piper
+MAGIC_NUMBER = 0.85 #15% discount for middle-man
+# ratecard for services provided to customer
 weekend_work_rate_eur = 4665 # weekend work cost is static - always 4665 EUR/month
 weekdays_full_time_rate_gbp = 129.2
 weekdays_full_time_rate_eur = 187.85
 weekdays_full_time_aus_rate_gbp = 113
 
-#Function for getting fx rates from NBP API
+#Function for getting fx rates from NBP API (Polish Central Bank)
 def get_rates_of_currency(currency,day):
     try:
         # We use NBP API (table A)
@@ -75,7 +75,7 @@ def lambda_handler(event, context):
    wwftaus_gbp = "{0:.2f}".format(weekday_aus_work_cost_gbp)
 
 #Let's format e-mail message
-   sns_email_body = "This is your SOC DLA Piper billing data." + "\n" \
+   sns_email_body = "This is your customer billing data." + "\n" \
    + "All values are calculated using NBP avg. exchange rates for: " + fx_date + "\n\n" \
    + "Weekend work cost PLN = " + wwc_pln + "\n" \
    + "Weekend work cost GBP = " + wwc_gbp + "\n\n" \
@@ -86,7 +86,7 @@ def lambda_handler(event, context):
    + "That's all! Have a good day!" + "\n" \
    + "Your highly sophisticated AWS Lambda function..."
    
-   subject = "SOC DLA Piper monthly billing. Invoice values"
+   subject = "Our customermonthly billing. Invoice values"
    send_sns(sns_email_body, subject)
 
 #main function returns values below (for API calls)
