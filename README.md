@@ -1,2 +1,2 @@
 # Hecrules-utlis
-Tools for mainframe Hercules emulator
+Tools for mainframe Hercules emulator: config files and docuemntaton
