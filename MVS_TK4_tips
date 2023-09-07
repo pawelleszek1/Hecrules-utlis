@@ -1,0 +1,34 @@
+MVS TK4 Turnkey working tips
+
+Environment:
+Raspberry Pi 4
+remote access: SSH (locally) or remote.it
+
+1. Starting Hercules
+- logon to Rpi to your user account
+- run command ./mvs (use screen to detatch it from current terminal session)
+- move using Esc between Hercules and MVS consoles
+
+2. Connecting to MVS console
+- from local network - run c3270 (TN3270) from local computer: c3270 xx.xx.xx.xx 3270 (IP address of Hercules machine)
+- from open Internet: run remote.it, login through SSH to Rpi and run c3270 localhost 3270
+
+3. Login to MVS console:
+- use login HERC01 or HERC02
+- use this password CUL8TR
+- tap Enter twice to go to TSO menu
+
+4. Logout from MVS
+- enter X in main TSO menu
+- enter logoff command to logout from your account and return to MVS login prompt
+OR
+- enter key combination Ctrl-k (keypad) or Ctrl-n (file menu) 
+- on TN terminal keypad PF3 to return to MVS command prompt
+- enter logoff command on new screen
+- use key combination Ctrl-n and select File->disconnect from menu
+
+5. Shutdown MVS
+- go to Hercules console
+- enter command: /F BSPPILOT,SHUTNOW or /S SHUT * * *
+- after shutdown completed enter command quit to exit Hercules
+[https://h390-mvs.yahoogroups.narkive.com/cBxkZNJx/tur-n-key-mvs-shutdown-procedures])
